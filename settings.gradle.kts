@@ -21,4 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "CryptoRune"
 include(":app")
- 
+include(":core")
+include(":core:data")
+include(":core:domain")
+include(":features")
+include(":core:data:local")
+include(":core:data:remote")
