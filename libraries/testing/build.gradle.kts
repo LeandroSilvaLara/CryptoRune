@@ -58,6 +58,6 @@ dependencies {
     testFixturesImplementation(libs.logging.interceptor)
     testFixturesImplementation(libs.annotation)
     testFixturesImplementation(libs.ui.test.junit4)
-    //testFixturesImplementation(project(Modules.domain))
+    testFixturesImplementation(project(Modules.domain))
     testFixturesImplementation(project(Modules.arch))
 }
