@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -21,4 +22,14 @@ dependencyResolutionManagement {
 
 rootProject.name = "CryptoRune"
 include(":app")
- 
+include(":core")
+include(":core:data")
+include(":core:domain")
+include(":features")
+include(":core:data:local")
+include(":core:data:remote")
+include(":libraries")
+include(":libraries:design")
+include(":libraries:testing")
+include(":buildsrc")
+include(":buildsync")
