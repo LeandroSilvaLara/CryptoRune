@@ -1,45 +1,89 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
+apply("$rootDir/plugins/android-build.gradle")
+
+val keystorePropertiesFile = rootProject.file("secrets/keystore.properties")
+
 android {
-    namespace = "com.leandrocourse.cryptorune"
-    compileSdk = 35
+    namespace = Config.NAMESPACE
 
     defaultConfig {
-        applicationId = "com.leandrocourse.cryptorune"
-        minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Config.APPLICATION_ID
+        versionCode = Config.VERSION_CODE
+        versionName = Config.VERSION_NAME
+    }
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            val keystoreProperties = Properties()
+            keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
+            create("signing") {
+                storeFile = file(keystoreProperties["STORE_FILE"] as String)
+                storePassword = keystoreProperties["STORE_PASSWORD"] as String
+                keyPassword = keystoreProperties["KEY_PASSWORD"] as String
+                keyAlias = keystoreProperties["KEY_ALIAS"] as String
+            }
+        }
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        named("debug") {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
+        named("staging") {
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            matchingFallbacks += listOf("release", "debug")
+            isMinifyEnabled = true
+        }
+        named("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+        }
+        configureEach {
+            if (name == "staging" || name == "release") {
+                if (keystorePropertiesFile.exists()) {
+                    signingConfig = signingConfigs.getByName("signing")
+                } else {
+                    println("keystore.properties not found for $name variant, skipping signing config")
+                }
+            }
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    sourceSets {
+        getByName("main").java.srcDirs("src/main/java")
+        getByName("debug").java.srcDirs("src/debug/java")
+        getByName("release").java.srcDirs("src/release/java")
+        getByName("staging").java.srcDirs("src/staging/java")
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
-
 dependencies {
+
+    implementation(project(Modules.arch))
+    implementation(project(Modules.design))
+    implementation(project(Modules.navigation))
+    implementation(project(Modules.remote))
+    implementation(project(Modules.local))
+    implementation(project(Modules.domain))
+    implementation(project(Modules.exchanges))
+    implementation(project(Modules.testing))
+    implementation(project(Modules.details))
+
+    implementation(libs.core.splashscreen)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
