@@ -73,6 +73,16 @@ android {
 }
 dependencies {
 
+    implementation(project(Modules.arch))
+    implementation(project(Modules.design))
+    implementation(project(Modules.navigation))
+    implementation(project(Modules.remote))
+    implementation(project(Modules.local))
+    implementation(project(Modules.domain))
+    implementation(project(Modules.exchanges))
+    implementation(project(Modules.testing))
+    implementation(project(Modules.details))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
