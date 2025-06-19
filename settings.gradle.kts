@@ -26,3 +26,7 @@ include(":app")
 
 rootProject.name = "CryptoRune"
 
+include(":libraries")
+include(":libraries:arch")
+include(":libraries:design")
+include(":libraries:testing")

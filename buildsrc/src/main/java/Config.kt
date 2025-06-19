@@ -1,6 +1,6 @@
 object Config {
     // App configuration
-    private const val PACKAGE_NAME: String = "com.fleandrocourse.cryptorune"
+    private const val PACKAGE_NAME: String = "com.leandrocourse.cryptorune"
     const val NAMESPACE: String = PACKAGE_NAME
     const val COMPILE_SDK: Int = 34
     const val APPLICATION_ID: String = PACKAGE_NAME
