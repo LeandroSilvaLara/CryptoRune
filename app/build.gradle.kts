@@ -1,8 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
+
+//apply("$rootDir/plugins/android-build.gradle")
+
+val keystorePropertiesFile = rootProject.file("secrets/keystore.properties")
 
 android {
     namespace = "com.leandrocourse.cryptorune"

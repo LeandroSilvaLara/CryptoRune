@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="CryptoRune.core.data.local" target="21" />
+      <module name="CryptoRune.core.data.remote" target="21" />
+      <module name="CryptoRune.libraries.design" target="21" />
+      <module name="CryptoRune.libraries.testing" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
