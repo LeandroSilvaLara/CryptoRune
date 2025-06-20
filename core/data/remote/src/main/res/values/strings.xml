@@ -19,5 +19,6 @@
 
     <string name="failure_generic_title">Unexpected Error</string>
     <string name="failure_generic_message">An unexpected error occurred. Please try again or contact support if the issue continues.</string>
+    <string name="app_name">MBCryptoRune</string>
 
 </resources>

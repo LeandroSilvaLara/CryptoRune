@@ -12,29 +12,4 @@
     <string name="common_ok">OK</string>
     <string name="common_wait">Wait…</string>
 
-
-    <resources>
-        <string name="failure_internet_title">Connection Error</string>
-        <string name="failure_internet_message">Unable to connect to the server. Please check your internet connection and try again.</string>
-
-        <string name="failure_bad_request_title">Bad Request Error</string>
-        <string name="failure_bad_request_message">Something went wrong with your request. Please try again or contact support if the issue persists.</string>
-
-        <string name="failure_unauthorized_title">Unauthorized Error</string>
-        <string name="failure_unauthorized_message">There was a problem with your credentials. Please check your account details.</string>
-
-        <string name="failure_forbidden_title">Forbidden Error</string>
-        <string name="failure_forbidden_message">You don\'t have permission to access this content. Please contact support if you think this is a mistake.</string>
-
-        <string name="failure_too_many_requests_title">Too Many Requests Error</string>
-        <string name="failure_too_many_requests_message">You have made too many requests in a short period. Please wait a moment and try again later.</string>
-
-        <string name="failure_no_data_title">No data Error</string>
-        <string name="failure_no_data_message">The requested information is currently not available. Please try again later.</string>
-
-        <string name="failure_generic_title">Unexpected Error</string>
-        <string name="failure_generic_message">An unexpected error occurred. Please try again or contact support if the issue continues.</string>
-
-    </resources>
-
 </resources>
