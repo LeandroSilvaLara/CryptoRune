@@ -1,149 +1,92 @@
 package com.leandrocourse.libraries.design.components.footer
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import com.leandrocourse.libraries.design.accessibility.clearAndSetSemantics
+import com.leandrocourse.libraries.design.components.button.ButtonType
+import com.leandrocourse.libraries.design.components.button.PlutoButtonComponent
 import com.leandrocourse.libraries.design.components.lorem.loremIpsum
 import com.leandrocourse.libraries.design.theme.PlutoTheme
 
 /**
- * A composable function that displays a customizable alert dialog.
+ * A composable function that provides a footer layout with a gradient effect at the top.
  *
- * @param contentDescription An optional description for accessibility purposes.
- * @param shouldShowDialog A boolean flag indicating whether the dialog should be displayed.
- * @param onDismissRequest A lambda function to be called when the dialog is dismissed.
- * @param properties The properties used to customize the dialog's behavior and appearance.
- * @param icon A composable lambda to define the icon displayed in the dialog.
- * @param title A composable lambda to define the title of the dialog.
- * @param text A composable lambda to define the main text content of the dialog.
- * @param confirmButton A composable lambda to define the confirm button in the dialog.
- * @param dismissButton A composable lambda to define the dismiss button in the dialog.
+ * @param content A composable lambda that defines the content to be displayed within the footer.
+ *                It is scoped to a [ColumnScope] to allow for column-based layout.
+ *
+ * This function does not return a value. It is used to structure the UI layout.
  */
 
 @Composable
-fun PlutoAlertDialogComponent(
-    contentDescription: String? = null,
-    shouldShowDialog: Boolean,
-    onDismissRequest: () -> Unit = {},
-    properties: DialogProperties = DialogProperties(),
-    icon: @Composable () -> Unit = {},
-    title: @Composable () -> Unit = {},
-    text: @Composable () -> Unit = {},
-    confirmButton: @Composable () -> Unit = {},
-    dismissButton: @Composable () -> Unit = {},
+fun PlutoFooterLayout(
+    content: @Composable ColumnScope.() -> Unit
 ) {
+    val color = MaterialTheme.colorScheme.onBackground
+    val height = PlutoTheme.dimen.dp4
 
-    if (shouldShowDialog) {
-        Dialog(
-            onDismissRequest = onDismissRequest,
-            properties = properties
+    Column {
+
+        Canvas(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(height)
         ) {
-            Surface(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(PlutoTheme.dimen.dp16),
-                shape = RoundedCornerShape(PlutoTheme.radius.large)
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(PlutoTheme.dimen.dp16)
-                        .background(MaterialTheme.colorScheme.surface),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp4))
-                    Column(
-                        modifier = Modifier.clearAndSetSemantics {
-                            this.contentDescription = contentDescription.orEmpty()
-                        },
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        icon()
-                        Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
-                        CompositionLocalProvider(
-                            LocalTextStyle provides PlutoTheme.typography.titleLarge,
-                            content = title
-                        )
-                        Spacer(modifier = Modifier.padding(PlutoTheme.dimen.dp4))
-                        CompositionLocalProvider(
-                            LocalTextStyle provides PlutoTheme.typography.bodyMedium,
-                            content = text
-                        )
-                    }
-                    Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp24))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.End
-                    ) {
-                        dismissButton()
-                        Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
-                        confirmButton()
-                    }
-                }
-            }
+            val gradient = Brush.verticalGradient(
+                colors = listOf(color.copy(alpha = 0.05f), Color.Transparent),
+                startY = size.height,
+                endY = 0f
+            )
+            drawRect(brush = gradient)
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = height,
+                    start = PlutoTheme.dimen.dp16,
+                    end = PlutoTheme.dimen.dp16,
+                    bottom = PlutoTheme.dimen.dp16
+                )
+        ) {
+            content()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun PlutoAlertDialogComponentPreview() {
-    PlutoAlertDialogComponent(
-        shouldShowDialog = true,
-        properties = DialogProperties(usePlatformDefaultWidth = false),
-        icon = {
-            Icon(
-                imageVector = Icons.Default.Info,
-                tint = PlutoTheme.text.colorPlaceholder,
-                contentDescription = null
-            )
-        },
-        title = {
-            Text(
+private fun PlutoFooterLayoutPreview() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        PlutoFooterLayout {
+            Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
+            PlutoButtonComponent(
+                modifier = Modifier.fillMaxWidth(),
                 text = loremIpsum { 2 },
+                buttonType = ButtonType.Primary
             )
-        },
-        text = {
-            Text(
-                text = loremIpsum { 10 },
+            Spacer(modifier = Modifier.padding(PlutoTheme.dimen.dp8))
+            PlutoButtonComponent(
+                modifier = Modifier.fillMaxWidth(),
+                text = loremIpsum { 2 },
+                buttonType = ButtonType.Secondary
             )
-        },
-        dismissButton = {
-            TextButton(
-                onClick = {}
-            ) {
-                Text("Cancel")
-            }
-        },
-        confirmButton = {
-            Button(
-                onClick = {}
-            ) {
-                Text("Confirm")
-            }
         }
-    )
+    }
 }
