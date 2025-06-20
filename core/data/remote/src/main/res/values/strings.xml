@@ -20,5 +20,8 @@
     <string name="failure_generic_title">Unexpected Error</string>
     <string name="failure_generic_message">An unexpected error occurred. Please try again or contact support if the issue continues.</string>
     <string name="app_name">MBCryptoRune</string>
+    <string name="common_go_back">Go back</string>
+    <string name="usd_volume">USD Volume</string>
+    <string name="editors_choice">Editor\'s Choice</string>
 
 </resources>
