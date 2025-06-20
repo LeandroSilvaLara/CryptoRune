@@ -30,6 +30,19 @@ import com.leandrocourse.libraries.design.accessibility.clearAndSetSemantics
 import com.leandrocourse.libraries.design.components.lorem.loremIpsum
 import com.leandrocourse.libraries.design.theme.PlutoTheme
 
+/**
+ * A composable function that displays a customizable alert dialog.
+ *
+ * @param contentDescription An optional description of the dialog's content for accessibility purposes.
+ * @param shouldShowDialog A boolean flag indicating whether the dialog should be displayed.
+ * @param onDismissRequest A lambda function that is called when the dialog is dismissed.
+ * @param properties The properties used to configure the dialog's behavior and appearance.
+ * @param icon A composable function that defines the icon to be displayed in the dialog.
+ * @param title A composable function that defines the title of the dialog.
+ * @param text A composable function that defines the main text content of the dialog.
+ * @param confirmButton A composable function that defines the confirm button in the dialog.
+ * @param dismissButton A composable function that defines the dismiss button in the dialog.
+ */
 
 @Composable
 fun PlutoAlertDialogComponent(
