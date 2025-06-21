@@ -5,10 +5,10 @@ plugins {
 }
 apply("$rootDir/plugins/android-build.gradle")
 
-/*secrets {
+secrets {
     propertiesFileName = "$rootDir/secrets/apiKey.properties"
     defaultPropertiesFileName = "$rootDir/default.properties"
-}*/
+}
 
 android {
     namespace = "${Config.NAMESPACE}.core.data.remote"

@@ -85,6 +85,12 @@ dependencies {
 
     implementation(libs.core.splashscreen)
 
+    debugImplementation(libs.flipper)
+    debugImplementation(libs.soloader)
+    debugImplementation(libs.flipper.leakcanary2.plugin)
+    debugImplementation(libs.leakcanary.android)
+    debugImplementation(libs.flipper.network.plugin)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
