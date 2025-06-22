@@ -25,5 +25,10 @@
     <string name="editors_choice">Editor\'s Choice</string>
     <string name="exchange_empty_screen">No exchanges available at the moment.</string>
     <string name="exchanges">Exchanges</string>
+    <string name="exchange_volume_usd_title">USD Volume</string>
+    <string name="exchange_volume_1hr_label">1hr</string>
+    <string name="exchange_volume_1day_label">1day</string>
+    <string name="exchange_volume_1mth_label">1mth</string>
+    <string name="exchange_editors_choice">Editor</string>
 
 </resources>

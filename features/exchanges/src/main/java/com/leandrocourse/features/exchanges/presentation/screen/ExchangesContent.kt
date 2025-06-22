@@ -1,5 +1,6 @@
 package com.leandrocourse.features.exchanges.presentation.screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,12 +33,14 @@ import com.leandrocourse.cryptorune.features.exchanges.R
 import com.leandrocourse.features.exchanges.presentation.component.ExchangeEmptyScreenComponent
 import com.leandrocourse.features.exchanges.presentation.component.ExchangeHorizontalLoadingIndicator
 import com.leandrocourse.features.exchanges.presentation.component.ExchangeItemComponent
+import com.leandrocourse.features.exchanges.presentation.component.PortfolioCardNoLibrary
 import com.leandrocourse.features.exchanges.presentation.viewmodel.ExchangesViewIntent
 import com.leandrocourse.features.exchanges.presentation.viewmodel.ExchangesViewState
 import com.leandrocourse.libraries.design.components.modal.PlutoModalComponent
 import com.leandrocourse.libraries.design.theme.PlutoTheme
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ExchangesContent(
     modifier: Modifier = Modifier,
@@ -51,30 +54,38 @@ internal fun ExchangesContent(
     Box(
         modifier = modifier.fillMaxSize()
     ) {
-        ExchangeHorizontalLoadingIndicator(
-            modifier = Modifier.testTag(LOADING_INDICATOR_TEST_TAG),
-            shouldShow = state.shouldShowLoading
-        )
-        LazyVerticalStaggeredGrid(
-            modifier = Modifier.padding(PlutoTheme.dimen.dp8),
-            columns = StaggeredGridCells.Fixed(count = 2),
-            verticalItemSpacing = PlutoTheme.dimen.dp8,
-            horizontalArrangement = Arrangement.spacedBy(PlutoTheme.dimen.dp8),
-        ) {
-            item(span = StaggeredGridItemSpan.FullLine) {
-                CardTopBar(modifier = Modifier.fillMaxWidth())
+        if (state.shouldShowLoading) {
+            ExchangeHorizontalLoadingIndicator(
+                modifier = Modifier.testTag(LOADING_INDICATOR_TEST_TAG),
+                shouldShow = true
+            )
+        } else {
+            LazyVerticalStaggeredGrid(
+                modifier = Modifier.padding(PlutoTheme.dimen.dp8),
+                columns = StaggeredGridCells.Fixed(count = 2),
+                verticalItemSpacing = PlutoTheme.dimen.dp8,
+                horizontalArrangement = Arrangement.spacedBy(PlutoTheme.dimen.dp8),
+            ) {
+                item(span = StaggeredGridItemSpan.FullLine) {
+                    PortfolioCardNoLibrary(
+                        modifier = Modifier
+                            .padding(bottom = PlutoTheme.dimen.dp8)
+                            .animateItemPlacement()
+                    )
+                }
+                items(state.exchanges) { exchange ->
+                    ExchangeItemComponent(
+                        exchange = exchange,
+                        itemClicked = { intent(ExchangesViewIntent.OnExchangeClicked(it.exchangeId)) }
+                    )
+                }
             }
-            items(state.exchanges) { exchange ->
-                ExchangeItemComponent(
-                    exchange = exchange,
-                    itemClicked = { intent(ExchangesViewIntent.OnExchangeClicked(it.exchangeId)) }
-                )
-            }
+            ExchangeEmptyScreenComponent(
+                shouldShowEmptyScreen = state.exchanges.isEmpty(),
+                onTryAgainClicked = { intent(ExchangesViewIntent.OnGetExchanges) }
+            )
         }
-        ExchangeEmptyScreenComponent(
-            shouldShowEmptyScreen = state.exchanges.isEmpty(),
-            onTryAgainClicked = { intent(ExchangesViewIntent.OnGetExchanges) }
-        )
+
         ErrorModal(
             shouldShowError = state.shouldShowError,
             errorType = state.errorType,
