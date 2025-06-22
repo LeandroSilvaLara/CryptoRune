@@ -25,7 +25,7 @@ plugins {
 configure<DependencyGraphGeneratorExtension> {
     generators.create("jetbrainsLibraries") {
         include = { dependency -> dependency.moduleGroup.startsWith("org.jetbrains") }
-        children = { false } // Include transitive dependencies.
+        children = { false }
         dependencyNode = { node, dependency -> node.add(Style.FILLED, Color.rgb("#AF1DF5")) }
     }
 }
