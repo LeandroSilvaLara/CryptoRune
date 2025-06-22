@@ -1,5 +1,7 @@
 package com.leandrocourse.features.exchanges.data.api
 
+import com.leandrocourse.features.exchanges.data.model.ExchangeResponse
+import com.leandrocourse.features.exchanges.data.model.IconResponse
 import retrofit2.http.GET
 
 internal interface CoinAPIService {

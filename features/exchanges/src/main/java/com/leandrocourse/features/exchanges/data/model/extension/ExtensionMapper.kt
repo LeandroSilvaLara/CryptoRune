@@ -1,5 +1,10 @@
 package com.leandrocourse.features.exchanges.data.model.extension
 
+import com.leandrocourse.core.domain.model.Exchange
+import com.leandrocourse.features.exchanges.data.model.ExchangeResponse
+import com.leandrocourse.features.exchanges.data.model.IconResponse
+import com.leandrocourse.libraries.arch.extension.orDash
+import com.leandrocourse.libraries.arch.extension.orZero
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
