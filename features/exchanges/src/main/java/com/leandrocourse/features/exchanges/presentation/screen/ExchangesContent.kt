@@ -31,8 +31,8 @@ import com.leandrocourse.core.data.remote.model.ErrorType
 import com.leandrocourse.core.domain.model.Exchange
 import com.leandrocourse.cryptorune.features.exchanges.R
 import com.leandrocourse.features.exchanges.presentation.component.ExchangeEmptyScreenComponent
-import com.leandrocourse.features.exchanges.presentation.component.ExchangeHorizontalLoadingIndicator
 import com.leandrocourse.features.exchanges.presentation.component.ExchangeItemComponent
+import com.leandrocourse.features.exchanges.presentation.component.ExchangesLoadingSkeleton
 import com.leandrocourse.features.exchanges.presentation.component.PortfolioCardNoLibrary
 import com.leandrocourse.features.exchanges.presentation.viewmodel.ExchangesViewIntent
 import com.leandrocourse.features.exchanges.presentation.viewmodel.ExchangesViewState
@@ -55,9 +55,9 @@ internal fun ExchangesContent(
         modifier = modifier.fillMaxSize()
     ) {
         if (state.shouldShowLoading) {
-            ExchangeHorizontalLoadingIndicator(
+            ExchangesLoadingSkeleton(
                 modifier = Modifier.testTag(LOADING_INDICATOR_TEST_TAG),
-                shouldShow = true
+
             )
         } else {
             LazyVerticalStaggeredGrid(
