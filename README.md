@@ -10,11 +10,11 @@ The application's core function is to consume the **CoinAPI.io** to fetch a list
 
 ## Screens LIGHT
 
-![Image](https://github.com/user-attachments/assets/cd066322-7c10-4bbf-be11-e8c2d5332953)
+<img src="https://github.com/user-attachments/assets/cd066322-7c10-4bbf-be11-e8c2d5332953" width="50%">
 
 ## Screens DARK
 
-![Image](https://github.com/user-attachments/assets/76fd6871-f4a4-4461-bfea-b2692a954d69)
+<img src= "https://github.com/user-attachments/assets/76fd6871-f4a4-4461-bfea-b2692a954d69" width="50%">
 
 ## Features
 
