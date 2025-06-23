@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leandrocourse.libraries.design.extension.toPx
 import com.leandrocourse.libraries.design.theme.PlutoTheme
+import com.leandrocourse.libraries.design.theme.tokens.PlutoDimens
 
 @Composable
 internal fun PortfolioCardNoLibrary(
@@ -74,7 +75,7 @@ internal fun PortfolioCardNoLibrary(
             SparkLineChart(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp),
+                    .height(PlutoDimens.dp200),
                 data = chartData,
                 graphColor = contentColor
             )
@@ -109,7 +110,7 @@ internal fun PortfolioCardNoLibrary(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Variação positiva",
                         tint = contentColor,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(PlutoDimens.dp20)
                     )
                     Text(
                         text = "+21.54%",

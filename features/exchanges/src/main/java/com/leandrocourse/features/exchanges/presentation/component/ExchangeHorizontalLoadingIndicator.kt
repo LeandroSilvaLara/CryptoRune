@@ -37,6 +37,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.leandrocourse.libraries.design.skeleton.shimmerBackground
 import com.leandrocourse.libraries.design.theme.PlutoTheme
+import com.leandrocourse.libraries.design.theme.tokens.PlutoDimens
+import com.leandrocourse.libraries.design.theme.tokens.PlutoElevation
 
 fun Modifier.shimmerBackground(shape: Shape): Modifier = composed {
     val shimmerColors = listOf(
@@ -90,45 +92,45 @@ internal fun ExchangeItemSkeleton(modifier: Modifier = Modifier) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier = Modifier.padding(PlutoElevation.max),
+            verticalArrangement = Arrangement.spacedBy(PlutoElevation.ultra)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(PlutoDimens.dp52)
                         .shimmerBackground(shape = CircleShape)
                 )
-                Spacer(Modifier.width(12.dp))
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Spacer(Modifier.width(PlutoElevation.ultra))
+                Column(verticalArrangement = Arrangement.spacedBy(PlutoElevation.extra)) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(0.8f)
-                            .height(20.dp)
-                            .shimmerBackground(shape = RoundedCornerShape(4.dp))
+                            .height(PlutoDimens.dp20)
+                            .shimmerBackground(shape = RoundedCornerShape(PlutoDimens.dp4))
                     )
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
-                            .height(16.dp)
-                            .shimmerBackground(shape = RoundedCornerShape(4.dp))
+                            .height(PlutoElevation.max)
+                            .shimmerBackground(shape = RoundedCornerShape(PlutoDimens.dp14))
                     )
                 }
             }
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(PlutoElevation.extra)) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(0.4f)
-                        .height(14.dp)
-                        .shimmerBackground(shape = RoundedCornerShape(4.dp))
+                        .height(PlutoDimens.dp14)
+                        .shimmerBackground(shape = RoundedCornerShape(PlutoDimens.dp4))
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Box(modifier = Modifier.size(50.dp, 24.dp).shimmerBackground(RoundedCornerShape(4.dp)))
-                    Box(modifier = Modifier.size(50.dp, 24.dp).shimmerBackground(RoundedCornerShape(4.dp)))
-                    Box(modifier = Modifier.size(50.dp, 24.dp).shimmerBackground(RoundedCornerShape(4.dp)))
+                    Box(modifier = Modifier.size(PlutoDimens.dp52, PlutoDimens.dp24).shimmerBackground(RoundedCornerShape(4.dp)))
+                    Box(modifier = Modifier.size(PlutoDimens.dp52, PlutoDimens.dp24).shimmerBackground(RoundedCornerShape(4.dp)))
+                    Box(modifier = Modifier.size(PlutoDimens.dp52, PlutoDimens.dp24).shimmerBackground(RoundedCornerShape(4.dp)))
                 }
             }
         }

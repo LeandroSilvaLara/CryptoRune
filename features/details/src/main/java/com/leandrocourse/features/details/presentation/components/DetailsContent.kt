@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,11 +33,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.leandrocourse.core.domain.model.Exchange
 import com.leandrocourse.cryptorune.core.data.remote.R
 import com.leandrocourse.features.details.presentation.components.content.DetailsVolumeBarComponent
+import com.leandrocourse.features.details.presentation.components.content.SparkLineChart
 import com.leandrocourse.features.details.presentation.viewmodel.DetailsViewIntent
 import com.leandrocourse.features.details.presentation.viewmodel.DetailsViewState
 import com.leandrocourse.libraries.design.theme.PlutoTheme
@@ -47,6 +52,7 @@ internal fun DetailsContent(
     state: DetailsViewState,
     intent: (DetailsViewIntent) -> Unit,
 ) {
+
 
     LaunchedEffect(Unit) {
         intent(DetailsViewIntent.OnInitView)
@@ -89,7 +95,17 @@ internal fun DetailsContent(
                     value = exchange.volume1mthUsd,
                     color = MaterialTheme.colorScheme.tertiary
                 )
+
                 Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp16))
+
+                ChartSection(
+                    title = "Volume History (30d)",
+                    data = state.historicalData,
+                    graphColor = MaterialTheme.colorScheme.primary
+                )
+
+                Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp24))
+
                 InfoPair(
                     title = "Website",
                     subtitle = exchange.website,
@@ -198,6 +214,41 @@ private fun ColumnScope.EditorsChoiceBadge(
             style = PlutoTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold
         )
+    }
+}
+
+
+@Composable
+private fun ChartSection(
+    modifier: Modifier = Modifier,
+    title: String,
+    data: List<Float>,
+    graphColor: Color
+) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Text(
+            text = title,
+            style = PlutoTheme.typography.bodyLarge.copy(
+                fontWeight = FontWeight.Bold
+            ),
+            color = MaterialTheme.colorScheme.secondary
+        )
+        Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
+        Card(
+            modifier = Modifier.fillMaxWidth().height(150.dp),
+            shape = RoundedCornerShape(PlutoTheme.radius.medium),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = graphColor
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        ) {
+            SparkLineChart(
+                modifier = Modifier.fillMaxSize().padding(16.dp),
+                data = data,
+                graphColor = graphColor
+            )
+        }
     }
 }
 

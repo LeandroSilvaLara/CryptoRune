@@ -56,6 +56,7 @@ import coil.request.ImageRequest
 import com.leandrocourse.core.domain.model.Exchange
 import com.leandrocourse.cryptorune.core.data.remote.R
 import com.leandrocourse.libraries.design.theme.PlutoTheme
+import com.leandrocourse.libraries.design.theme.tokens.PlutoDimens
 import com.leandrocourse.libraries.design.theme.tokens.lightRed
 import com.valentinilk.shimmer.LocalShimmerTheme
 import com.valentinilk.shimmer.defaultShimmerTheme
@@ -109,7 +110,7 @@ internal fun ExchangeItemComponent(
                         )
                     )
                     .border(
-                        width = 1.dp,
+                        width = PlutoDimens.dp2,
                         brush = Brush.verticalGradient(
                             colors = listOf(
                                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
@@ -196,7 +197,7 @@ private fun RowScope.VolumeItemV2(label: String, value: String) {
     Column(
         modifier = Modifier.weight(1f),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(PlutoDimens.dp4)
     ) {
         Text(
             text = formatVolume(value),
