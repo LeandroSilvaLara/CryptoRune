@@ -5,11 +5,12 @@ import com.leandrocourse.core.domain.usecase.SelectExchangeUseCase
 import com.leandrocourse.libraries.arch.viewmodel.ViewIntent
 import com.leandrocourse.libraries.arch.viewmodel.ViewModel
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 
 internal class DetailsViewModel(
     exchangeId: String,
-    private val selectExchangeUseCase: SelectExchangeUseCase
+    private val selectExchangeUseCase: SelectExchangeUseCase,
 ) : ViewModel<DetailsViewState, DetailsViewEffect>(DetailsViewState(exchangeId)),
     ViewIntent<DetailsViewIntent> {
 
@@ -23,8 +24,17 @@ internal class DetailsViewModel(
 
     private fun handleSelectExchange() {
         viewModelScope.launch {
-            runCatching { selectExchangeUseCase(viewState.exchangeId) }
-                .onSuccess { onState { copy(exchange = it) } }
+            runCatching {
+                val exchange = selectExchangeUseCase(viewState.exchangeId)
+                onState { copy(exchange = exchange, historicalData = emptyList()) }
+                val fullChartData = (1..30).map { Random.nextInt(100, 500).toFloat() }
+                fullChartData.forEachIndexed { index, _ ->
+                    kotlinx.coroutines.delay(50)
+                    onState { copy(historicalData = fullChartData.subList(0, index + 1)) }
+                }
+
+            }.onFailure {
+            }
         }
     }
 

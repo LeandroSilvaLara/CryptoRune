@@ -26,6 +26,8 @@ internal class ExchangesViewModel(
         }
     }
 
+
+
     private fun handleGetExchanges() {
         viewModelScope.launch {
             onState { copy(shouldShowLoading = true, shouldShowError = false) }

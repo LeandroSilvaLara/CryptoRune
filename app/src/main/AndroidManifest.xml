@@ -19,7 +19,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.CryptoRune"
+            android:theme="@style/Theme.CryptoRune.Splash"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

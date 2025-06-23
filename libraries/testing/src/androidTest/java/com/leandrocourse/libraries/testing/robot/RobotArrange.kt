@@ -17,3 +17,4 @@ inline fun <T : RobotArrange<RA, VM>, VM : ViewModel, reified RA : RobotAction<*
     this.apply(block)
     return RA::class.createInstance(createComposeRule)
 }
+

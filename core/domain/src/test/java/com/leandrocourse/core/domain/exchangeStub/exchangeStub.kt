@@ -1,8 +1,8 @@
-package com.leandrocourse.libraries.testing.stub
+package com.leandrocourse.core.domain.exchangeStub
 
+import com.leandrocourse.core.domain.model.Exchange
 
-
-fun exchangeStub() = Exchange(
+internal fun exchangeStub() = Exchange(
     exchangeId = "MERCADOBITCOIN",
     website = "https://www.mercadobitcoin.com.br/",
     name = "Mercado Bitcoin",
@@ -20,6 +20,6 @@ fun exchangeStub() = Exchange(
     isEditorChoice = true
 )
 
-fun exchangesStub() = listOf(
+internal fun exchangesStub() = listOf(
     exchangeStub()
 )
