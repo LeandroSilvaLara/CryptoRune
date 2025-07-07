@@ -11,7 +11,7 @@ import kotlin.math.pow
  */
 private const val DEFAULT_VALUE = "-"
 private const val THOUSAND = 1000.0
-private val SUFFIXES = charArrayOf('K', 'M', 'B')
+private val SUFFIXES = charArrayOf('K', 'M', 'B', 'T')
 private val DECIMAL_FORMAT = DecimalFormat("0.##")
 private val SUFFIX_FORMAT = "%.1f%c"
 
@@ -23,7 +23,9 @@ fun formatVolume(value: String?): String {
         if (number < THOUSAND) return DECIMAL_FORMAT.format(number)
 
         val exp = (ln(number) / ln(THOUSAND)).toInt()
-        String.format(SUFFIX_FORMAT, number / THOUSAND.pow(exp.toDouble()), SUFFIXES[exp - 1])
+        val index = (exp - 1).coerceAtMost(SUFFIXES.lastIndex)
+        val scaled = number / THOUSAND.pow((index + 1).toDouble())
+        String.format(SUFFIX_FORMAT, scaled, SUFFIXES[index])
     } catch (e: NumberFormatException) {
         value
     }
