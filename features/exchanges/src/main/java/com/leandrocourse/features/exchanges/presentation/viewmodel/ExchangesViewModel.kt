@@ -1,5 +1,11 @@
 package com.leandrocourse.features.exchanges.presentation.viewmodel
 
+/**
+ * ViewModel responsible for managing the state of the exchanges list screen.
+ * It reacts to user intents, loads data from use cases and exposes effects for
+ * navigation or error handling.
+ */
+
 import androidx.lifecycle.viewModelScope
 import com.leandrocourse.core.data.remote.model.ErrorType
 import com.leandrocourse.core.data.remote.network.exception.model.HttpThrowable

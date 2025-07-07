@@ -1,5 +1,11 @@
 package com.leandrocourse.cryptorune
 
+/**
+ * Entry point of the application. This activity hosts the Jetpack Compose
+ * content and coordinates the navigation graph. It also handles the splash
+ * screen animation while waiting for [MainViewModel] to finish loading data.
+ */
+
 import android.os.Bundle
 import android.view.animation.AnticipateInterpolator
 import androidx.activity.ComponentActivity
