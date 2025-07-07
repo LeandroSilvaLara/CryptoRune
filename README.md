@@ -88,3 +88,21 @@ To run the app, you need an API key from [CoinAPI.io](https://www.coinapi.io/). 
 ## Credits
 
 This project was developed based on the challenge requirements provided by [Mercado Bitcoin](https://github.com/mercadobitcoin/querosermb).
+
+## Sugestões de Melhoria
+
+Com base em práticas comuns de evolução de projetos open source, seguem algumas
+ideias para aprimorar o CryptoRune:
+
+- **Automação de Lint**: configurar uma etapa de CI/CD (GitHub Actions ou Husky)
+  para executar o linter de forma automática a cada commit ou pull request.
+- **Testes de UI**: incluir testes instrumentados utilizando Espresso ou Jetpack
+  Compose Test para aumentar a confiabilidade da interface.
+- **Diagrama de Fluxo**: adicionar ao README um diagrama em UML ou `mermaid.js`
+  para documentar o fluxo principal da aplicação.
+- **Organização de Pacotes**: reestruturar os módulos em diretórios como
+  `features/`, `core/` e `data/` para facilitar a navegação no código.
+- **Nomes de Commits**: adotar o padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/)
+  a fim de padronizar o histórico do projeto.
+- **Performance**: aplicar técnicas de lazy loading, caching e uso de `Flow` ou
+  `StateFlow` sempre que possível.
