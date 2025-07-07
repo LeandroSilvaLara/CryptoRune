@@ -1,5 +1,11 @@
 package com.leandrocourse.features.details.presentation.viewmodel
 
+/**
+ * Handles state and events for the exchange details screen. It loads the
+ * selected exchange information and gradually builds the historical chart data
+ * used by the UI.
+ */
+
 import androidx.lifecycle.viewModelScope
 import com.leandrocourse.core.domain.usecase.SelectExchangeUseCase
 import com.leandrocourse.libraries.arch.viewmodel.ViewIntent

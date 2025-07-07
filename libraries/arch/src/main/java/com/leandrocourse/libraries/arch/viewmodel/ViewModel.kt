@@ -1,5 +1,11 @@
 package com.leandrocourse.libraries.arch.viewmodel
 
+/**
+ * Base ViewModel used across the project to implement a simple
+ * unidirectional data flow. It exposes immutable state via a [StateFlow] and
+ * a channel for one-off effects such as navigation.
+ */
+
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

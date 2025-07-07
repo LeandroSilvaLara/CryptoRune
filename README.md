@@ -2,11 +2,11 @@
 
 An Android application developed to demonstrate modern development practices, clean architecture, and advanced UI construction with Jetpack Compose. The app fetches and displays cryptocurrency exchange data from the CoinAPI.io.
 
-## About the Project
+## Visão Geral do Projeto
 
-CryptoRune was developed as a technical challenge to showcase skills in modern Android development. The project is built entirely in Kotlin and utilizes a **Clean Architecture** with an **MVI (Model-View-Intent)** pattern, ensuring a scalable, maintainable, and testable codebase.
+CryptoRune é um aplicativo Android desenvolvido para demonstrar práticas modernas de desenvolvimento. Ele é escrito integralmente em Kotlin e segue os princípios da **Clean Architecture** em conjunto com o padrão **MVI (Model-View-Intent)**, oferecendo uma base escalável e de fácil manutenção.
 
-The application's core function is to consume the **CoinAPI.io** to fetch a list of cryptocurrency exchanges and display their details. Throughout its development, several advanced features were implemented to create a fluid, resilient, and visually appealing user experience. This includes a dynamic portfolio header with a custom-drawn chart, real-time currency conversion, a full-screen skeleton loading state to improve perceived performance, and a custom in-house design system named **"Pluto"** to ensure UI consistency.
+O objetivo é consumir a API da **CoinAPI.io** para exibir uma lista de corretoras de criptomoedas e seus detalhes. Recursos avançados como cabeçalho dinâmico com gráfico, conversão em tempo real de moedas, tela de carregamento com skeleton e o design system **"Pluto"** garantem uma experiência moderna e consistente.
 
 ## Screens LIGHT
 
@@ -30,15 +30,23 @@ The application's core function is to consume the **CoinAPI.io** to fetch a list
 -   **Modern Skeleton Loading UI**: A custom, full-screen skeleton loader that mimics the final layout, providing a seamless transition from loading to content.
 -   **Advanced UI Components**: Modern, animated, and interactive UI components built with Jetpack Compose.
 
-## Architecture
+## Arquitetura
 
-This project is built upon the principles of **Clean Architecture**, separating concerns into three primary layers: Data, Domain, and Presentation.
+O projeto segue os princípios da **Clean Architecture**, separando responsabilidades em três camadas principais: Data, Domain e Presentation.
+
+```
+Presentation (ViewModel & Compose)
+        |
+Domain (UseCases)
+        |
+Data (Repositories -> DataSources)
+```
 
 -   **Data Layer**: Responsible for fetching data from remote (Retrofit/CoinAPI) and local sources.
 -   **Domain Layer**: Contains the core business logic, executed through `UseCases`.
 -   **Presentation Layer**: Implements an **MVI (Model-View-Intent)** pattern using Jetpack Compose for the UI and a `ViewModel` to manage state and handle user intents.
 
-## Technologies Used
+## Tecnologias Utilizadas
 
 -   **Language**: [Kotlin](https://kotlinlang.org/)
 -   **UI Toolkit**: [Jetpack Compose](https://developer.android.com/jetpack/compose)
@@ -74,16 +82,31 @@ To run the app, you need an API key from [CoinAPI.io](https://www.coinapi.io/). 
 ### Important Notes
 -   **Security**: The `local.properties` file is included in the project's `.gitignore` to prevent your secret keys from being committed to version control. **Never commit your API keys.**
 
-### How to Run
+### Como Executar
 
-1.  Clone the repository to your local machine.
-2.  Set up your API key as described above.
-3.  Open the project in Android Studio and run the app.
+1.  Clone o repositório em sua máquina.
+2.  Configure a chave da API conforme descrito acima.
+3.  Abra o projeto no Android Studio e execute o aplicativo.
+
+### Como Rodar os Testes
+
+Execute os testes unitários e instrumentados com:
+
+```bash
+./gradlew test
+./gradlew connectedAndroidTest
+```
 
 ### Development Environment
 
 -   Android Studio | Meerkat Feature Drop | 2024.3.2 Patch 1
 -   Java JDK 17
+
+## Classes Principais
+
+- **MainActivity**: activity inicial que configura o tema, o grafo de navegação e gerencia a animação da splash screen.
+- **Repositories**: abstrações responsáveis por obter ou persistir dados. As implementações `ExchangesRepositoryImpl` e `LocalRepositoryImpl` acessam a rede e o banco local, respectivamente.
+- **ViewModel**: controla o estado das telas e responde aos intents de usuário. Exemplos incluem `MainViewModel`, `ExchangesViewModel` e `DetailsViewModel`.
 
 ## Credits
 

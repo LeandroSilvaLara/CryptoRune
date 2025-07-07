@@ -1,5 +1,10 @@
 package com.leandrocourse.core.data.local.repository
 
+/**
+ * Local implementation of [MBCryptoRuneRepository]. It persists and retrieves
+ * exchange information using the provided [LocalDataSource].
+ */
+
 import com.leandrocourse.core.data.local.source.LocalDataSource
 import com.leandrocourse.core.domain.model.Exchange
 import com.leandrocourse.core.domain.repository.MBCryptoRuneRepository
